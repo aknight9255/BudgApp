@@ -58,7 +58,10 @@
     <Compile Include="Category\CategoryDetails.cs" />
     <Compile Include="Category\CategoryEdit.cs" />
     <Compile Include="Category\CategoryListItem.cs" />
-    <Compile Include="Income\Class1.cs" />
+    <Compile Include="Income\IncomeCreate.cs" />
+    <Compile Include="Income\IncomeDetails.cs" />
+    <Compile Include="Income\IncomeEdit.cs" />
+    <Compile Include="Income\IncomeListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction\Class1.cs" />
   </ItemGroup>

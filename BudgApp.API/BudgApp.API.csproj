@@ -311,6 +311,10 @@
       <Project>{5ADB2D55-D75F-431C-9F5C-1A0A2ED8BADE}</Project>
       <Name>BudgApp.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BudgApp.Service\BudgApp.Service.csproj">
+      <Project>{985ba19f-44f2-4324-aab3-0dd75a91708d}</Project>
+      <Name>BudgApp.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgApp.Models.Category
+namespace BudgApp.Models
 {
     public class CategoryDetails
     {

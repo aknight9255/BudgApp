@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgApp.API", "BudgApp.API\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgApp.Data", "BudgApp.Data\BudgApp.Data.csproj", "{5ADB2D55-D75F-431C-9F5C-1A0A2ED8BADE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgApp.Service", "BudgApp.Service\BudgApp.Service.csproj", "{985BA19F-44F2-4324-AAB3-0DD75A91708D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5ADB2D55-D75F-431C-9F5C-1A0A2ED8BADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ADB2D55-D75F-431C-9F5C-1A0A2ED8BADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ADB2D55-D75F-431C-9F5C-1A0A2ED8BADE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{985BA19F-44F2-4324-AAB3-0DD75A91708D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{985BA19F-44F2-4324-AAB3-0DD75A91708D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{985BA19F-44F2-4324-AAB3-0DD75A91708D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{985BA19F-44F2-4324-AAB3-0DD75A91708D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

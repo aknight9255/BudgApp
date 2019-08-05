@@ -17,7 +17,7 @@ namespace BudgApp.Service
             _userID = userID;
         }
 
-        public bool CreateTransaction(TransactionCreate model)
+        public bool CreateTransaction(TransactionCreate model) //Creates a transaction. Nice!
         {
             var entity =
                 new Transaction()
@@ -35,7 +35,7 @@ namespace BudgApp.Service
             }
         }
 
-        public IEnumerable<TransactionListItem> GetTransactions()
+        public IEnumerable<TransactionListItem> GetTransactions() // This thing gets the transactions. All of them.
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -58,7 +58,7 @@ namespace BudgApp.Service
             }
         }
 
-        public TransactionDetail GetTransactionByID(int id)
+        public TransactionDetail GetTransactionByID(int id) //This one gets a transaction based on a given ID. aww ye. 
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -75,6 +75,54 @@ namespace BudgApp.Service
                        CategoryID = entity.CategoryID,
                        Category = entity.Category
                    };
+            }
+        }
+
+        public IEnumerable<TransactionListItem> GetTransactionsByMonth(DateTime monthKey) // this one gets all the transaction in a certain month. This one took some thought, but turned out ok.
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Transactions
+                    .Where(e => e.TransactionDate.Month == monthKey.Month && e.AccountID == _userID).Select(e => new TransactionListItem
+                    {
+                        TransactionID = e.TransactionID,
+                        TransactionAmount = e.TransactionAmount,
+                        TransactionDate = e.TransactionDate,
+                        CategoryID = e.CategoryID,
+                        Category = e.Category
+                    });
+                return entity.ToArray();
+            }
+            
+        }
+
+        public bool UpdateTransaction(TransactionEdit model) //this one updates the transaction. Its pretty lit.
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Transactions
+                        .Single(e => e.TransactionID == model.TransactionID && e.AccountID == _userID);
+                entity.TransactionAmount = model.TransactionAmount;
+                entity.TransactionDate = model.TransactionDate;
+                entity.CategoryID = model.CategoryID;
+                entity.Category = model.Category;
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteTransaction(int TransactionID)// if you want to give a transaction the boot, this method is the one. it does its best.
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx.Transactions.Single(e => e.TransactionID == TransactionID && e.AccountID == _userID);
+                ctx.Transactions.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
             }
         }
     }

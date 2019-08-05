@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BudgApp.Models.Category
 {
-    class Class1
+     public class CategoryCreate
     {
+        [Required]
+        public string CategoryType { get; set; }
     }
 }

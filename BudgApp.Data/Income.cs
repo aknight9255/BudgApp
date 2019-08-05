@@ -11,7 +11,13 @@ namespace BudgApp.Data
     {
         [Key]
         public int IncomeID { get; set; }
+        [Required]
+        [Display(Name = "Amount")]
         public float IncomeAmount { get; set; }
+        [Required]
+        [Display(Name = "Date")]
         public DateTime IncomeDate { get; set; }
+
+        public Guid AccountID { get; set; }
     }
 }

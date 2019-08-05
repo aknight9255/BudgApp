@@ -5,19 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgApp.Data
+namespace BudgApp.Models.Category
 {
-    public class Category
+    public class CategoryListItem
     {
         [Key]
         public int CategoryID { get; set; }
-
-        [Required]
+        
         [Display(Name = "Category")]
         public string CategoryType { get; set; }
-
-        [Required]
-        public Guid AccountID { get; set; }
-
     }
 }

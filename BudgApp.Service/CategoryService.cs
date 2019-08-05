@@ -1,6 +1,6 @@
 ﻿using BudgApp.Data;
 using BudgApp.Data.Models;
-using BudgApp.Models.Category;
+using BudgApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

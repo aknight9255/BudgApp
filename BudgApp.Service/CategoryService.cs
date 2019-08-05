@@ -51,7 +51,7 @@ namespace BudgApp.Service
                             CategoryID = entity.CategoryID,
                             CategoryType = entity.CategoryType,
                         });
-                return query.ToList();
+                return query.ToArray();
             }
         }
 

@@ -17,7 +17,7 @@ namespace BudgApp.Service
             _userID = userID;
         }
 
-        public bool CreateTransaction(TransactionCreate model) //Creates a transaction. Nice!
+        public bool CreateTransaction(TransactionCreate model) // Creates a transaction. Nice!
         {
             var entity =
                 new Transaction()
@@ -35,7 +35,7 @@ namespace BudgApp.Service
             }
         }
 
-        public IEnumerable<TransactionListItem> GetTransactions() // This thing gets the transactions. All of them.
+        public IEnumerable<TransactionListItem> GetTransactions() // Gets all of the transactions
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -58,7 +58,7 @@ namespace BudgApp.Service
             }
         }
 
-        public TransactionDetail GetTransactionByID(int id) //This one gets a transaction based on a given ID. aww ye. 
+        public TransactionDetail GetTransactionByID(int id) // Gets a transaction based on a given ID
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -78,7 +78,7 @@ namespace BudgApp.Service
             }
         }
 
-        public IEnumerable<TransactionListItem> GetTransactionsByMonth(DateTime monthKey) // this one gets all the transaction in a certain month. This one took some thought, but turned out ok.
+        public IEnumerable<TransactionListItem> GetTransactionsByMonth(DateTime monthKey) // Gets the transactions of a specified month
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -98,7 +98,7 @@ namespace BudgApp.Service
             
         }
 
-        public bool UpdateTransaction(TransactionEdit model) //this one updates the transaction. Its pretty lit.
+        public bool UpdateTransaction(TransactionEdit model) // Updates the selected transaction
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -114,7 +114,7 @@ namespace BudgApp.Service
             }
         }
 
-        public bool DeleteTransaction(int TransactionID)// if you want to give a transaction the boot, this method is the one. it does its best.
+        public bool DeleteTransaction(int TransactionID)// Deletes a selected transaction
         {
             using(var ctx = new ApplicationDbContext())
             {

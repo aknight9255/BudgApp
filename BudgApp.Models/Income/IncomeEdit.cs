@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BudgApp.Models.Income
 {
-    class Class1
+    public class IncomeEdit
     {
+        public  int IncomeID { get; set; }
+        public float IncomeAmount{ get; set; }
+        public DateTime IncomeDate{ get; set; }
     }
 }

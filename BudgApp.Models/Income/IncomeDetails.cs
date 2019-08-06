@@ -5,19 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgApp.Data
+namespace BudgApp.Models.Income
 {
-    public class Income
+    public class IncomeDetails
     {
-        [Key]
+
         public int IncomeID { get; set; }
         [Required]
-        [Display(Name = "Amount")]
         public float IncomeAmount { get; set; }
         [Required]
-        [Display(Name = "Date")]
         public DateTime IncomeDate { get; set; }
-
-        public Guid AccountID { get; set; }
     }
 }

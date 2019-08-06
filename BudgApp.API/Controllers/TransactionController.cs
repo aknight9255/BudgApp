@@ -28,13 +28,19 @@ namespace BudgApp.API.Controllers
 
         }
 
-        public IHttpActionResult  Get(DateTime coolDate)
+        public IHttpActionResult Get(DateTime coolDate)
         {
             TransactionService transactionService = CreateTransactionService();
             var transaction = transactionService.GetTransactionsByMonth(coolDate);
             return Ok(transaction);
         }
 
+        public IHttpActionResult Put(DateTime monthKey)
+        {
+            TransactionService transactionService = CreateTransactionService();
+            var transaction = transactionService.GetBalance(monthKey);
+            return Ok(transaction);
+        }
         public IHttpActionResult Post(TransactionCreate transaction)
         {
             if (!ModelState.IsValid)

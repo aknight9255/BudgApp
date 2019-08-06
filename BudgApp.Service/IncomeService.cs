@@ -58,7 +58,7 @@ namespace BudgApp.Service
                 var entity =
                     ctx
                     .Incomes
-                    .Where(e => e.IncomeDate.Month == monthKey.Month && e.AccountID == _userID).Select(e => new IncomeListItem
+                    .Where(e => e.IncomeDate.Month == monthKey.Month && e.AccountID == _userID && e.IncomeDate.Year == monthKey.Year).Select(e => new IncomeListItem
                     {
                         IncomeID = e.IncomeID,
                         IncomeAmount = e.IncomeAmount,

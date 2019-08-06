@@ -85,7 +85,7 @@ namespace BudgApp.Service
                 var entity =
                     ctx
                     .Transactions
-                    .Where(e => e.TransactionDate.Month == monthKey.Month && e.AccountID == _userID).Select(e => new TransactionListItem
+                    .Where(e => e.TransactionDate.Month == monthKey.Month && e.AccountID == _userID && e.TransactionDate.Year == monthKey.Year).Select(e => new TransactionListItem
                     {
                         TransactionID = e.TransactionID,
                         TransactionAmount = e.TransactionAmount,

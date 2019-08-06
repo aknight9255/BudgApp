@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using BudgApp.Models.Income;
 
 namespace BudgApp.Service
 {
@@ -124,6 +126,46 @@ namespace BudgApp.Service
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+
+        public float GetTransactionSum (IEnumerable<TransactionListItem> transactionList)
+        {
+
+            var listOfSums = new List<float>();
+            foreach (TransactionListItem transaction in transactionList)
+            {
+                var sum = transaction.TransactionAmount;
+                listOfSums.Add(sum);
+            }
+
+            return listOfSums.Sum();
+        }
+
+        public float GetIncomeSum(IEnumerable<IncomeListItem> incomeList)
+        {
+            var listOfSums = new List<float>();
+            foreach (IncomeListItem income in incomeList)
+            {
+                var sum = income.IncomeAmount;
+                listOfSums.Add(sum);
+            }
+
+            return listOfSums.Sum();
+        }
+
+
+        public float GetBalance(DateTime monthKey)
+        {
+            var incomeService = new IncomeService(_userID);
+            var incomeArray = incomeService.GetIncomeByMonth(monthKey);
+            var transactionArray = GetTransactionsByMonth(monthKey);
+            var incomeSum = GetIncomeSum(incomeArray);
+            var transactionSum = GetTransactionSum(transactionArray);
+
+            return incomeSum - transactionSum;
+
+
         }
     }
 }

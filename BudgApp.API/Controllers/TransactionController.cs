@@ -35,12 +35,23 @@ namespace BudgApp.API.Controllers
             return Ok(transaction);
         }
 
-        public IHttpActionResult Put(DateTime monthKey)
+        [Route("api/Transaction/GetBalance")]
+        public IHttpActionResult GetBalance(DateTime monthKey)
         {
             TransactionService transactionService = CreateTransactionService();
             var transaction = transactionService.GetBalance(monthKey);
             return Ok(transaction);
         }
+
+        [Route("api/Transaction/GetChartData")]
+        public IHttpActionResult GetChartData()
+        {
+            TransactionService transactionService = CreateTransactionService();
+            var chartData = transactionService.CategorySum();
+            return Ok(chartData);
+        }
+
+
         public IHttpActionResult Post(TransactionCreate transaction)
         {
             if (!ModelState.IsValid)

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using BudgApp.Models.Income;
+using BudgApp.Models;
 
 namespace BudgApp.Service
 {
@@ -97,7 +98,7 @@ namespace BudgApp.Service
                     });
                 return entity.ToArray();
             }
-            
+
         }
 
         public bool UpdateTransaction(TransactionEdit model) // Updates the selected transaction
@@ -118,7 +119,7 @@ namespace BudgApp.Service
 
         public bool DeleteTransaction(int TransactionID)// Deletes a selected transaction
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx.Transactions.Single(e => e.TransactionID == TransactionID && e.AccountID == _userID);
@@ -129,7 +130,7 @@ namespace BudgApp.Service
         }
 
 
-        public float GetTransactionSum (IEnumerable<TransactionListItem> transactionList)
+        public float GetTransactionSum(IEnumerable<TransactionListItem> transactionList)
         {
 
             var listOfSums = new List<float>();
@@ -166,6 +167,37 @@ namespace BudgApp.Service
             return incomeSum - transactionSum;
 
 
+        }
+
+        public IEnumerable<float> CategorySum()
+        {
+            var service = CreateCategoryService();
+            var categoryArray = service.GetCategories();
+            var transactionArray = GetTransactions();
+            var finalArray = new List<float>();
+            foreach (CategoryListItem category in categoryArray)
+            {
+                var listOfSums = new List<float>();
+                foreach (TransactionListItem transaction in transactionArray)
+                {
+                    if (transaction.CategoryID == category.CategoryID)
+                    {
+                        
+                        var x = transaction.TransactionAmount;
+                        listOfSums.Add(x);
+                    }
+                }
+                var categorySum = listOfSums.Sum();
+                finalArray.Add(categorySum);
+            }
+
+            return finalArray;
+        }
+
+        private CategoryService CreateCategoryService()
+        {
+            var categoryService = new CategoryService(_userID);
+            return categoryService;
         }
     }
 }

@@ -17,6 +17,7 @@ using BudgApp.API.Models;
 using BudgApp.API.Providers;
 using BudgApp.API.Results;
 using BudgApp.Data.Models;
+using System.Linq;
 
 namespace BudgApp.API.Controllers
 {
@@ -384,6 +385,16 @@ namespace BudgApp.API.Controllers
 
             base.Dispose(disposing);
         }
+
+        [Route("users")]
+
+        public IEnumerable<ApplicationUser> GetUsers()
+        {
+            using (var context = new ApplicationDbContext())
+                return context.Users.ToArray();
+        }
+
+
 
         #region Helpers
 

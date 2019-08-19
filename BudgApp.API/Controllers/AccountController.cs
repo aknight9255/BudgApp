@@ -59,10 +59,16 @@ namespace BudgApp.API.Controllers
         public UserInfoViewModel GetUserInfo()
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+            string role = "";
+            if (User.IsInRole("Admin"))
+            {
+                role = "Admin";
+            }
 
             return new UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
+                Role = role,
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };

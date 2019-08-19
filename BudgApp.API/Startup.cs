@@ -41,6 +41,7 @@ namespace BudgApp.API
 
                 var user = new ApplicationUser();
                 user.Email = "admin@admin.admin";
+                user.UserName = "admin@admin.admin";
 
                 string userPWD = "Admin1!";
 

@@ -14,6 +14,7 @@ namespace BudgApp.Models.Transaction
         [ForeignKey("Category")]
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
+        public string CategoryType { get; set; }
         public float TransactionAmount { get; set; }
         public DateTime TransactionDate { get; set; }
     }

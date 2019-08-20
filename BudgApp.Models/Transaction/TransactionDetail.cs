@@ -16,6 +16,7 @@ namespace BudgApp.Models.Transaction
         [Display(Name = "Category")]
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
+        public string CategoryType { get; set; }
         [Display(Name = "Amount")]
         public float TransactionAmount { get; set; }
         [Display(Name = "Date")]

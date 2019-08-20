@@ -32,6 +32,7 @@ namespace BudgApp.API.Models
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }
+        public string Role { get; set; }
     }
 
     public class UserLoginInfoViewModel

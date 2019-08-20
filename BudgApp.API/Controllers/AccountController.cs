@@ -18,6 +18,8 @@ using BudgApp.API.Providers;
 using BudgApp.API.Results;
 using BudgApp.Data.Models;
 using System.Linq;
+using System.Net;
+using BudgApp.Models;
 
 namespace BudgApp.API.Controllers
 {
@@ -59,10 +61,16 @@ namespace BudgApp.API.Controllers
         public UserInfoViewModel GetUserInfo()
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+            string role = "";
+            if (User.IsInRole("Admin"))
+            {
+                role = "Admin";
+            }
 
             return new UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
+                Role = role,
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
@@ -385,16 +393,62 @@ namespace BudgApp.API.Controllers
 
             base.Dispose(disposing);
         }
-
-        [Route("users")]
-
-        public IEnumerable<ApplicationUser> GetUsers()
+        //GET -- All users
+        [Route("AllUsers")]
+        public IHttpActionResult GetAllUsers()
         {
-            using (var context = new ApplicationDbContext())
-                return context.Users.ToArray();
+            var users = GetUsers();
+            Request.CreateResponse(HttpStatusCode.OK, users);
+            return Ok(users);
         }
 
+        public IEnumerable<UserTest> GetUsers()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var query = context.Users.Select(e => new UserTest
+                {
+                    UserId = e.Id,
+                    Email = e.Email
+                }
+                );
+                return query.ToArray();
+            }
+        }
+        //Delete One User
+        public bool DeleteUser(string ID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx.Users.Single(e => e.Id == ID);
+                ctx.Users.Remove(entity);
 
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        //Get User by ID 
+        [Route("PullUserByID")]
+        public IHttpActionResult GetUser(string ID)
+        {
+            var user = GetUserByID(ID);
+            return Ok(user);
+        }
+        public UserInfoViewModel GetUserByID(string ID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Users
+                    .Single(e => e.Id == ID);
+                return new UserInfoViewModel
+                {
+                    Email = entity.Email,
+                };
+            }
+        }
 
         #region Helpers
 

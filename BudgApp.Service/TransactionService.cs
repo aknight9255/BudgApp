@@ -76,7 +76,7 @@ namespace BudgApp.Service
                        TransactionAmount = entity.TransactionAmount,
                        TransactionDate = entity.TransactionDate,
                        CategoryID = entity.CategoryID,
-                       Category = entity.Category
+                       CategoryType = entity.Category.CategoryType
                    };
             }
         }
@@ -94,7 +94,7 @@ namespace BudgApp.Service
                         TransactionAmount = e.TransactionAmount,
                         TransactionDate = e.TransactionDate,
                         CategoryID = e.CategoryID,
-                        Category = e.Category
+                        CategoryType = e.Category.CategoryType
                     });
                 return entity.ToArray();
             }

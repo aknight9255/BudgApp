@@ -54,7 +54,7 @@ namespace BudgApp.Service
                                 TransactionAmount = e.TransactionAmount,
                                 TransactionDate = e.TransactionDate,
                                 CategoryID = e.CategoryID,
-                                Category = e.Category
+                                CategoryType = e.Category.CategoryType
                             }
                         );
                 return query.ToArray();

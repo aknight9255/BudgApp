@@ -91,6 +91,7 @@
     <Compile Include="Transaction\TransactionDetail.cs" />
     <Compile Include="Transaction\TransactionEdit.cs" />
     <Compile Include="Transaction\TransactionListItem.cs" />
+    <Compile Include="UserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BudgApp.Data\BudgApp.Data.csproj">
